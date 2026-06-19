@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import LinkIcon from './LinkIcon.astro';
+import { hasOptimizedIcon, linkIconAssets } from '../data/link-icons';
+import type { SiteLink } from '../data/links';
+import { defaultLang, t } from '../i18n';
+
+interface Props {
+	link: SiteLink;
+}
+
+const { link } = Astro.props;
+const lang = defaultLang;
+const iconAsset = hasOptimizedIcon(link.id) ? linkIconAssets[link.id] : null;
+const loadEager = link.id === 'telegram' || link.id === 'github' || link.id === 'steam';
+
+function resolveIconSrc(iconImage: string) {
+	if (iconImage.startsWith('http://') || iconImage.startsWith('https://')) {
+		return iconImage;
+	}
+	return `${import.meta.env.BASE_URL}${iconImage.replace(/^\//, '')}`;
+}
+
+const iconSrc = !iconAsset && link.iconImage ? resolveIconSrc(link.iconImage) : null;
+---
+
+<a
+	class="panel-link group flex min-h-[3.25rem] items-center gap-3.5 rounded-xl border px-4 py-3.5 no-underline hover:-translate-y-0.5 active:translate-y-0"
+	href={link.url}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label={`${t(lang, link.labelKey)} — ${t(lang, 'link.external')}`}
+	data-i18n-label={link.labelKey}
+>
+	<span
+		class:list={[
+			'flex h-10 w-10 shrink-0 items-center justify-center',
+			iconAsset || iconSrc ? 'overflow-hidden rounded-full' : 'panel-icon-bg rounded-md',
+		]}
+	>
+		{
+			iconAsset ? (
+				<Image
+					class="h-full w-full object-cover"
+					src={iconAsset}
+					alt=""
+					width={40}
+					height={40}
+					densities={[1, 2]}
+					priority={loadEager}
+				/>
+			) : iconSrc ? (
+				<img
+					class="h-full w-full object-cover"
+					src={iconSrc}
+					alt=""
+					width="40"
+					height="40"
+					loading={loadEager ? 'eager' : 'lazy'}
+					decoding="async"
+				/>
+			) : (
+				<LinkIcon icon={link.icon} />
+			)
+		}
+	</span>
+	<span class="flex min-w-0 flex-1 flex-col gap-0.5">
+		<span class="panel-text text-[0.975rem] font-semibold" data-i18n={link.labelKey}>
+			{t(lang, link.labelKey)}
+		</span>
+		<span
+			class="panel-text-muted truncate text-[0.8125rem]"
+			data-i18n={link.descriptionKey}
+		>
+			{t(lang, link.descriptionKey)}
+		</span>
+	</span>
+	<span
+		class="panel-text-accent shrink-0 text-lg opacity-0 transition-[opacity,transform] duration-200 ease-out -translate-x-1 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+		aria-hidden="true"
+	>
+		→
+	</span>
+</a>

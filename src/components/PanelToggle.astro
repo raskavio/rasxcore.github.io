@@ -1,0 +1,16 @@
+---
+import { defaultLang, t } from '../i18n';
+
+const lang = defaultLang;
+---
+
+<button
+	id="panel-toggle"
+	type="button"
+	class="panel-toggle-btn mb-4 flex w-full min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg border px-3 py-2 font-display text-xs font-bold tracking-wide transition-[background-color,border-color,color,margin] duration-200 ease-out sm:mb-5"
+	aria-controls="content-panel-body"
+	aria-expanded="true"
+>
+	<span id="panel-toggle-icon" aria-hidden="true" class="text-sm leading-none">▾</span>
+	<span id="panel-toggle-label" data-i18n="panel.hide">{t(lang, 'panel.hide')}</span>
+</button>

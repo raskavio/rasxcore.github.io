@@ -1,0 +1,87 @@
+---
+import { defaultPanelTheme, panelThemes } from '../data/themes';
+import { defaultLang, t } from '../i18n';
+
+const lang = defaultLang;
+
+const themePreview: Record<(typeof panelThemes)[number], string> = {
+	wall: 'bg-wall border-ceiling',
+	corridor: 'bg-corridor border-fluoro',
+	fluoro: 'bg-[#0f2824] border-fluoro-bright',
+};
+
+const themeLabelKeys = {
+	wall: 'theme.wall',
+	corridor: 'theme.corridor',
+	fluoro: 'theme.fluoro',
+} as const;
+---
+
+<div
+	class="switch-pill flex gap-1.5 p-1"
+	role="group"
+	data-i18n-aria-label="theme.switch"
+	aria-label={t(lang, 'theme.switch')}
+>
+	{
+		panelThemes.map((theme) => (
+			<button
+				type="button"
+				class:list={[
+					'theme-btn switch-btn flex min-h-9 min-w-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-2.5 py-1.5 transition-[background-color,color,border-color,box-shadow] duration-200 ease-out',
+					{ 'is-active': theme === defaultPanelTheme },
+				]}
+				data-theme={theme}
+				data-i18n-aria-label={themeLabelKeys[theme]}
+				aria-pressed={theme === defaultPanelTheme}
+				aria-label={t(lang, themeLabelKeys[theme])}
+			>
+				<span
+					class:list={['block h-4 w-4 rounded-full border-2', themePreview[theme]]}
+					aria-hidden="true"
+				/>
+			</button>
+		))
+	}
+</div>
+
+<script define:vars={{ panelThemes, defaultPanelTheme }}>
+	function initThemeSwitch() {
+		const storageKey = 'panel-theme';
+
+		function setTheme(theme) {
+			if (!panelThemes.includes(theme)) return;
+
+			document.documentElement.setAttribute('data-panel-theme', theme);
+			localStorage.setItem(storageKey, theme);
+
+			document.querySelectorAll('.theme-btn').forEach((btn) => {
+				const isActive = btn.getAttribute('data-theme') === theme;
+				btn.classList.toggle('is-active', isActive);
+				btn.setAttribute('aria-pressed', String(isActive));
+			});
+		}
+
+		const saved = localStorage.getItem(storageKey);
+		if (saved && panelThemes.includes(saved)) {
+			setTheme(saved);
+		} else {
+			setTheme(defaultPanelTheme);
+		}
+
+		document.querySelectorAll('.theme-btn').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const theme = btn.getAttribute('data-theme');
+				if (theme && panelThemes.includes(theme)) {
+					setTheme(theme);
+				}
+			});
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initThemeSwitch);
+	} else {
+		initThemeSwitch();
+	}
+</script>

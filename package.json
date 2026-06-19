@@ -1,0 +1,30 @@
+{
+  "name": "rasxcore",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fetch:steam-avatar": "node scripts/fetch-steam-avatar.mjs",
+    "fetch:vrchat-avatar": "node scripts/fetch-vrchat-avatar.mjs",
+    "fetch:github-avatar": "node scripts/fetch-github-avatar.mjs",
+    "resize:icons": "node scripts/resize-icons.mjs",
+    "generate:og-image": "node scripts/generate-og-image.mjs",
+    "generate:favicon": "node scripts/generate-favicon.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.7",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

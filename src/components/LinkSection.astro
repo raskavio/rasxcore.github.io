@@ -1,0 +1,39 @@
+---
+import LinkCard from './LinkCard.astro';
+import type { LinkCategory, SiteLink } from '../data/links';
+import { defaultLang, t, type TranslationKey } from '../i18n';
+
+interface Props {
+	category: LinkCategory;
+	links: SiteLink[];
+}
+
+const { category, links } = Astro.props;
+const lang = defaultLang;
+
+const categoryKeys: Record<LinkCategory, TranslationKey> = {
+	gaming: 'category.gaming',
+	music: 'category.music',
+	social: 'category.social',
+	interests: 'category.interests',
+};
+---
+
+<section class="mb-7" aria-labelledby={`section-${category}`}>
+	<h2
+		class="panel-text-muted mb-3 pl-1 font-display text-[0.8125rem] font-bold uppercase tracking-[0.12em]"
+		id={`section-${category}`}
+		data-i18n={categoryKeys[category]}
+	>
+		{t(lang, categoryKeys[category])}
+	</h2>
+	<ul class="m-0 flex list-none flex-col gap-2.5 p-0">
+		{
+			links.map((link) => (
+				<li>
+					<LinkCard link={link} />
+				</li>
+			))
+		}
+	</ul>
+</section>

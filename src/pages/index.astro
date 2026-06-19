@@ -1,0 +1,37 @@
+---
+import Hero from '../components/Hero.astro';
+import LangSwitch from '../components/LangSwitch.astro';
+import LinkSection from '../components/LinkSection.astro';
+import ThemeSwitch from '../components/ThemeSwitch.astro';
+import { categoryOrder, links } from '../data/links';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { defaultLang, t } from '../i18n';
+
+const lang = defaultLang;
+
+const linksByCategory = categoryOrder.map((category) => ({
+	category,
+	links: links.filter((link) => link.category === category),
+}));
+---
+
+<BaseLayout>
+	<Hero />
+	<div class="mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+		<LangSwitch />
+		<ThemeSwitch />
+	</div>
+	{
+		linksByCategory.map(({ category, links: categoryLinks }) => (
+			<LinkSection category={category} links={categoryLinks} />
+		))
+	}
+	<footer class="panel-divider mt-2 border-t border-dashed pt-5">
+		<p
+			class="panel-text-muted mx-auto max-w-lg whitespace-pre-line text-justify font-display text-base italic leading-relaxed"
+			data-i18n="footer.quote"
+		>
+			{t(lang, 'footer.quote')}
+		</p>
+	</footer>
+</BaseLayout>
