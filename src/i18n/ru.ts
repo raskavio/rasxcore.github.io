@@ -1,5 +1,4 @@
 export const ru = {
-	'meta.title': 'rasxcore — liminal links',
 	'meta.description':
 		'Фронтенд-инженер, музыкант, геймер. Ссылки на Spotify, VRChat, Telegram и мир Backrooms.',
 	'hero.name': 'rasxcore',

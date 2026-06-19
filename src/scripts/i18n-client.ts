@@ -22,9 +22,6 @@ export function setLang(lang: Lang) {
 		const value = translations[lang][key as keyof typeof translations.ru];
 		if (el instanceof HTMLMetaElement) {
 			el.content = value;
-		} else if (el instanceof HTMLTitleElement) {
-			el.textContent = value;
-			document.title = value;
 		} else {
 			el.textContent = value;
 		}

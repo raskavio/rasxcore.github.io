@@ -1,5 +1,4 @@
 export const en = {
-	'meta.title': 'rasxcore — liminal links',
 	'meta.description':
 		'Frontend engineer, musician, gamer. Links to Spotify, VRChat, Telegram, and the Backrooms.',
 	'hero.name': 'rasxcore',
