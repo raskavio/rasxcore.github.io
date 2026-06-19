@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // GitHub Pages user site (username.github.io): base = '/'
 export default defineConfig({
-  site: 'https://rasxcore.github.io',
+  site: 'http://rasxcore.ru/',
   output: 'static',
 
   vite: {
