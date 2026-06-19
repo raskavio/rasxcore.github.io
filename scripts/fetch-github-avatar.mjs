@@ -40,11 +40,11 @@ if (!avatarResponse.ok) {
 const bytes = Buffer.from(await avatarResponse.arrayBuffer());
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const linkFile = path.join(root, 'src', 'assets', 'icons', 'github-avatar.jpg');
-const heroFile = path.join(root, 'public', 'icons', 'hero-avatar.jpg');
+const heroFile = path.join(root, 'src', 'assets', 'hero-avatar.jpg');
 
 await saveAvatarImage(bytes, linkFile, LINK_ICON_SIZE);
 await saveAvatarImage(bytes, heroFile, HERO_AVATAR_SIZE);
 
 console.log(`Avatar saved: src/assets/icons/github-avatar.jpg (${LINK_ICON_SIZE}px)`);
-console.log(`Avatar saved: public/icons/hero-avatar.jpg (${HERO_AVATAR_SIZE}px)`);
+console.log(`Avatar saved: src/assets/hero-avatar.jpg (${HERO_AVATAR_SIZE}px)`);
 console.log(`Source URL: ${avatarUrl}`);

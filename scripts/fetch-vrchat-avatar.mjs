@@ -56,9 +56,9 @@ const extension = contentType.includes('jpeg') || contentType.includes('jpg') ? 
 const bytes = Buffer.from(await avatarResponse.arrayBuffer());
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const outputFile = path.join(root, 'public', 'icons', `vrchat-avatar.${extension}`);
+const outputFile = path.join(root, 'src', 'assets', 'icons', `vrchat-avatar.${extension}`);
 
 await saveAvatarImage(bytes, outputFile, LINK_ICON_SIZE);
 
-console.log(`Avatar saved: public/icons/vrchat-avatar.${extension} (${LINK_ICON_SIZE}px)`);
+console.log(`Avatar saved: src/assets/icons/vrchat-avatar.${extension} (${LINK_ICON_SIZE}px)`);
 console.log(`Source URL: ${avatarUrl}`);

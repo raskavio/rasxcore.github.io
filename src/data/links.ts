@@ -16,7 +16,7 @@ export interface SiteLink {
 	icon: LinkIcon;
 	labelKey: string;
 	descriptionKey: string;
-	/** Custom icon path under public/ or remote URL. Steam, Telegram, GitHub use src/assets via link-icons.ts */
+	/** Optional remote icon URL. Link icons use src/assets via link-icons.ts */
 	iconImage?: string;
 }
 
@@ -28,7 +28,6 @@ export const links: SiteLink[] = [
 		icon: 'spotify',
 		labelKey: 'link.spotify.label',
 		descriptionKey: 'link.spotify.desc',
-		iconImage: 'icons/spotify-avatar.png',
 	},
 	{
 		id: 'steam',
@@ -45,7 +44,6 @@ export const links: SiteLink[] = [
 		icon: 'vrchat',
 		labelKey: 'link.vrchat.label',
 		descriptionKey: 'link.vrchat.desc',
-		iconImage: 'icons/vrchat-avatar.png',
 	},
 		// {
 	// 	id: 'discord',
@@ -78,7 +76,6 @@ export const links: SiteLink[] = [
 		icon: 'backrooms',
 		labelKey: 'link.backrooms.label',
 		descriptionKey: 'link.backrooms.desc',
-		iconImage: 'icons/backrooms-logo.png',
 	},
 ];
 
