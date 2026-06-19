@@ -1,6 +1,6 @@
 export const en = {
 	'meta.description':
-		'Frontend engineer, musician, gamer. Links to Spotify, VRChat, Telegram, and the Backrooms.',
+		'Imagine describing a dog to someone who\'s never seen one before and then asking them to draw it. It will look similar but the devil is in the details.',
 	'hero.name': 'rasxcore',
 	'hero.tagline': 'Frontend engineer · Musician · Gamer',
 	'hero.subtitle': 'Imagine describing a dog to someone who\'s never seen one before and then asking them to draw it. It will look similar but the devil is in the details.',
