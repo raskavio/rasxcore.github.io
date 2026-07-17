@@ -55,7 +55,7 @@ export const links: SiteLink[] = [
 	// },
 	{
 		id: 'telegram',
-		url: 'https://t.me/rasxcore',
+		url: 'https://t.me/raskavio',
 		category: 'social',
 		icon: 'telegram',
 		labelKey: 'link.telegram.label',
@@ -63,7 +63,7 @@ export const links: SiteLink[] = [
 	},
 	{
 		id: 'github',
-		url: 'https://github.com/rasxcore',
+		url: 'https://github.com/raskavio',
 		category: 'social',
 		icon: 'github',
 		labelKey: 'link.github.label',
